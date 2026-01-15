@@ -1,2 +1,9 @@
+numpy==1.26.4
 pdfplumber
 python-docx
+paddlepaddle==2.6.2
+paddleocr
+vietocr
+mkl
+pdf2image 
+poppler-utils
