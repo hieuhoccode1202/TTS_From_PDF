@@ -3,7 +3,8 @@ main/
 __pycache__/
 *.pyc
 .env
-
+.png
+.pdf
 
 storage/uploads/*
 storage/outputs/*

@@ -1,26 +1,21 @@
-from gtts import gTTS
+import edge_tts
 import os
 
 class TTS:
     def __init__(self):
-        self.lang = 'vi'
+        self.voice = "vi-VN-HoaiMyNeural"
 
-    def convert_text_to_mp3(self, text, output_path):
-
+    async def convert_text_to_mp3(self, text, output_path):
+        """Hàm này bây giờ là async và không dùng asyncio.run() bên trong nữa"""
         try:
-            if os.path.isdir(output_path):
-                print(f"[TTS Error] output_path đang là thư mục, cần có tên file cụ thể!")
-                return False
-
-            dir_name = os.path.dirname(output_path)
-            if dir_name and not os.path.exists(dir_name):
-                os.makedirs(dir_name, exist_ok=True)
             clean_text = text.replace('\n', ' ')
-            tts = gTTS(text=clean_text, lang=self.lang, slow=False)
-            tts.save(output_path)
-            print(f"[TTS] Thành công: {output_path}")
+            os.makedirs(os.path.dirname(output_path), exist_ok=True)
+
+            communicate = edge_tts.Communicate(clean_text, self.voice, rate="-10%")
+            await communicate.save(output_path)
+            
+            print(f"[Edge-TTS] Thành công: {output_path}")
             return True
-        
         except Exception as e:
-            print(f"[TTS Error] {e}")
+            print(f"[Edge-TTS Error] {e}")
             return False

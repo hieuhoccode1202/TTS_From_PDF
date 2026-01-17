@@ -7,3 +7,9 @@ vietocr
 mkl
 pdf2image 
 poppler-utils
+google-generativeai
+edge-tts
+protobuf==3.20.3
+fastapi
+uvicorn
+python-multipart
